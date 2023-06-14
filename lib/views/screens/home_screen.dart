@@ -1,3 +1,4 @@
+import 'package:small_bean_clinic/views/screens/medicines_screen.dart';
 import 'package:small_bean_clinic/views/widgets/grid_nav_item.dart';
 import 'package:small_bean_clinic/views/widgets/info_widget.dart';
 
@@ -11,9 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(imgBackground), fit: BoxFit.fill)),
+              decoration: const BoxDecoration(color: bgColor),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
@@ -43,60 +42,38 @@ class HomeScreen extends StatelessWidget {
                 childAspectRatio: 1, // Tỷ lệ khung hình của mỗi phần tử
                 children: [
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.warehouse_outlined,
-                        size: 30,
-                      ),
-                      text: "Kho hàng",
+                      icon: Icons.warehouse_outlined,
+                      text: storage,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.article_outlined,
-                        size: 30,
-                      ),
-                      text: "Đơn hàng",
+                      icon: Icons.list_alt_outlined,
+                      text: medicine,
+                      onTap: () {
+                        Get.to(() => const MedicinesScreen());
+                      }),
+                  GridNavItem(
+                      icon: Icons.post_add_rounded,
+                      text: prescribe,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.post_add_rounded,
-                        size: 30,
-                      ),
-                      text: "Đặt hàng",
+                      icon: Icons.article_outlined,
+                      text: prescription,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.list_alt_outlined,
-                        size: 30,
-                      ),
-                      text: "Sản phẩm",
+                      icon: Icons.people_alt_outlined,
+                      text: phonebook,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.people_alt_outlined,
-                        size: 30,
-                      ),
-                      text: "Danh bạ",
+                      icon: Icons.event_busy_outlined,
+                      text: paybook,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.event_busy_outlined,
-                        size: 30,
-                      ),
-                      text: "Sổ nợ",
+                      icon: Icons.bar_chart_outlined,
+                      text: reports,
                       onTap: () {}),
                   GridNavItem(
-                      icon: const Icon(
-                        Icons.bar_chart_outlined,
-                        size: 30,
-                      ),
-                      text: "Báo cáo",
-                      onTap: () {}),
-                  GridNavItem(
-                      icon: const Icon(
-                        Icons.more_horiz_outlined,
-                        size: 30,
-                      ),
-                      text: "Khác",
+                      icon: Icons.more_horiz_outlined,
+                      text: others,
                       onTap: () {}),
                 ],
               ),
@@ -113,7 +90,7 @@ class HomeScreen extends StatelessWidget {
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: whiteColor,
+        color: bg2Color,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
@@ -124,49 +101,64 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   Text(
-                    "Hôm nay",
+                    today,
                     style: TextStyle(
                       fontFamily: semibold,
                       fontSize: 18,
-                      color: darkFontGrey,
+                      color: primary2Color,
                     ),
                   ),
                   Text(
-                    "Xem lãi-lỗ >",
+                    viewProfitLoss,
                     style: TextStyle(
                       fontFamily: regular,
                       fontSize: 20,
-                      color: pinkColor,
+                      color: secondaryColor,
                     ),
                   )
                 ]),
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                color: textfieldGrey,
-                borderRadius: BorderRadius.circular(15),
+              decoration: const BoxDecoration(
+                color: greenColor,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15)),
               ),
-              child: Row(children: const [
-                Expanded(
+              child: Row(children: [
+                const Expanded(
                   child: InfoWidget(
-                      title: "Doanh thu", icon: Icon(Icons.bar_chart_outlined)),
+                    title: income,
+                    icon: Icons.bar_chart_outlined,
+                  ),
                 ),
-                VerticalDivider(
-                  color: fontGrey,
-                  thickness: 2,
-                ),
-                Expanded(
+                Container(
+                    height: 120,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            right: BorderSide(
+                      width: 1,
+                      color: bg2Color,
+                    )))),
+                const Expanded(
                     child: InfoWidget(
-                        title: "Số Đơn", icon: Icon(Icons.article_outlined))),
-                VerticalDivider(
-                  color: fontGrey,
-                  thickness: 2,
-                ),
-                Expanded(
+                  title: numPrescription,
+                  icon: Icons.article_outlined,
+                )),
+                Container(
+                    height: 120,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            right: BorderSide(
+                      width: 1,
+                      color: bg2Color,
+                    )))),
+                const Expanded(
                   child: InfoWidget(
-                      title: "Lợi nhuận",
-                      icon: Icon(Icons.monetization_on_outlined)),
+                    title: profit,
+                    icon: Icons.monetization_on_outlined,
+                  ),
                 ),
               ]),
             ),
@@ -188,7 +180,7 @@ class HomeScreen extends StatelessWidget {
               height: 50,
               width: 50,
               decoration: BoxDecoration(
-                  color: greenColor, borderRadius: BorderRadius.circular(50)),
+                  color: bg2Color, borderRadius: BorderRadius.circular(50)),
               child: const Icon(
                 Icons.person,
                 size: 30,
@@ -207,15 +199,15 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: regular,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
-                      color: whiteColor),
+                      color: secondaryColor),
                 ),
                 Text(
-                  "Thông tin >",
+                  infomation,
                   style: TextStyle(
                       fontFamily: regular,
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
-                      color: textfieldGrey),
+                      color: fontGrey),
                 ),
               ],
             ),
@@ -225,7 +217,7 @@ class HomeScreen extends StatelessWidget {
             onTap: () => {},
             child: const Icon(
               Icons.qr_code_scanner_outlined,
-              color: whiteColor,
+              color: primaryColor,
               size: 35,
             ),
           )

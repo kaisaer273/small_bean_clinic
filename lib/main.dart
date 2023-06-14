@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'SmallBean Clinic',
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: const HomeScreen(),
     );
   }

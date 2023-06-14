@@ -1,7 +1,7 @@
 import 'package:small_bean_clinic/consts/consts.dart';
 
 class GridNavItem extends StatelessWidget {
-  final Icon icon;
+  final IconData icon;
   final String text;
   final Function()? onTap;
   const GridNavItem(
@@ -14,22 +14,27 @@ class GridNavItem extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: textfieldGrey,
+          color: bg2Color,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            icon,
+            Icon(
+              icon,
+              color: secondaryColor,
+              size: 30,
+            ),
             const SizedBox(
               height: 10,
             ),
             Text(
               text,
               style: const TextStyle(
-                fontFamily: regular,
+                fontFamily: semibold,
                 fontWeight: FontWeight.normal,
                 fontSize: 15,
+                color: primaryColor,
               ),
             ),
           ],
