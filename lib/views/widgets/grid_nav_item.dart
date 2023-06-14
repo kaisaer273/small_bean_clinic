@@ -22,7 +22,7 @@ class GridNavItem extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: secondaryColor,
+              color: primaryColor,
               size: 30,
             ),
             const SizedBox(

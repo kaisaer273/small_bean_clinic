@@ -217,7 +217,7 @@ class HomeScreen extends StatelessWidget {
             onTap: () => {},
             child: const Icon(
               Icons.qr_code_scanner_outlined,
-              color: primaryColor,
+              color: secondaryColor,
               size: 35,
             ),
           )
